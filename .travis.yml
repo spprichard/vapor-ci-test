@@ -8,6 +8,6 @@ script:
   # Install Brew
   - /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   # Install Vapor
-  - brew install vapor
+  - brew install vapor/tap/vapor
   # Build App
   - swift build
