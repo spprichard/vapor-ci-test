@@ -10,15 +10,21 @@ script:
 - swift build
 - echo Running tests
 - swift test
-- echo Connecting to Prod Server
-- ssh steven@$SERVER_IP
-- echo Running test command
-- ls -la
-- echo Exiting...
-- exit
+after_success:
+  - bash scripts/deploy.sh
 env:
   global:
     secure: I3trBJYduBc+qwLLmM2OmPMM383uxdGvEXyyqBD2VOm8EDbNbZaGvMbHsuxaHY/nmYvO6oVouTxiLu4lmHbHjre3VxRdToe1QGt/QCITVJ2iwj7GqGPCXnJN5ocHCu8a2YkrE5szSnbs52uukOtXCMvcpIYoiDys7vZaK6o2NliiC4OyoIDfDYuKc3HAfx92Jh0oW/dC7lmPB0Qez8O+63L7B1XqWWgzRwkWrPpzNzzC5lJJ8zt6uSvAxozFPUppVNo7qmdkP/muMP3wOHbvUq/rthEg+H5hIjFo+2qyMN3LLnKb/hkUA9nCGLswvoYm0j17JHTKuvShhKpC42KUYH6gYTf3aeWlPxvwkljcWVSvCzrLWdFncEv7KFIc6X4eZB4XhA4pxZlt/fiO1VCIThmhN1/Yq9Rr57/pXNGYXgt7nUwPNDEUq/uCQzWpzt2b1QgLNr6NKoJYgiIDCdV+DeMTbgeljCWG0W65ve1RBA7ZX4baLPIfR+4f7da4IoYhxh4JmYH82vvghMtnLjtpUmXde6mbgh/SPaAPH4/rA8Xt+bXANaY0NkSXUqpzonpu56Gvgt0Qi1+WaH+FQCX33GOhoQ2lXbYS7mTGEUu+FYh8qCDh7/ThSz0bnNOJO2N6HwaFJgb7UdbdcAU6W2Rav5xEU2WF56uN60GqovxvpLI=
 notifications:
+  email:
+    recipients:
+    - spprichard20@gmail.com
+    on_success: never
+    on_failure: always
   slack:
     secure: ePafY4yewSUpD7Jejjag5ppnSwcLiYSmXK1W4q5dZlmicV99ZKmNBJWc8PIiCAg14PXZUqhTmVSQA/TRpROwfuUil45xEz1OjA3cXjXZuPfm/gvASC/2cQzQS+PunNqICeCTwAXtRVz72yTaTWXh9FZ1xbdQNVqeCXCzRMcblrv5g/D+GgtQi585Vp14k8shXPAmLVJh/b+2qKm6GPgY3FsgY2w3q85IG/773BdmXphDJBtUqgAqkC0Fi1Hd42FcqM2tQzJSwbK06bojIR7j15NZP7mt02GoxPr/kGjp3yuy2E+2htdnIv2L/L5Zx1rYIZlPoZd8pGDY9nyrJhG7fTqdAR84kMPkly1hQSqBlqVZ9WK3Z/QUUm2x+8DsE4M3EXnOqqBXhZV3GbIu26w1lciF4+J9HEhyfQliiz272pTtxShzGxISU+CQEYBp6qHE3m/epCqragNH7yfKpC+RJRURRI1AV5i0vVCL3QSJEnLl0q6zxeoNNVMaMTQXQ6rl/ujbi4oShbEldks1pSawP3NXZ0/3D3o+O/u8DzF0CvR1+ncs1Io+IQ5lecYBetBHBk8HcjTaBA1x9rq0IdKoVSjuy3C75iXkrNcooR1xKOSvQButCLOhOenVdGApncGjX97/cC4MnP2M7XAgNygOwB0MaddRg0WLbapeEekLows=
+    on_success: always
+    on_failure: always
+before_install:
+- openssl aes-256-cbc -K $encrypted_fc5f3198f487_key -iv $encrypted_fc5f3198f487_iv
+  -in deploy-key.enc -out deploy-key -d
