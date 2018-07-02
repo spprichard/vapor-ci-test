@@ -1,22 +1,21 @@
-machine:
-  xcode:
-    version: "8.3"
+version: 2
 
-dependencies:
-  pre:
-    - brew install postgres
-    - brew install vapor/tap/vapor
-    - swift package fetch
-  cache_directories:
-    - "./.build"
-
-compile:
-  override:
-    - vapor build
-
-test:
-  override:
-    - set -o pipefail &&
-      swift test 2>&1 |
-      tee $CIRCLE_ARTIFACTS/test.log |
-      xcpretty --color --report junit --output $CIRCLE_TEST_REPORTS/results.xml
+jobs:
+  build:
+    docker:
+      - image: circleci/swift:4.2.1
+    steps:
+      - checkout
+      - run: swift build
+  test:
+    docker:
+      - image: circleci/swift:4.2.1
+    steps:
+      - checkout
+      - run: swift test
+ workflows:
+   version: 2
+   build_and_test:
+     jobs:
+       - build
+       - test
