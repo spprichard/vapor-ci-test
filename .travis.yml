@@ -11,3 +11,5 @@ script:
   - brew install vapor/tap/vapor
   # Build App
   - swift build
+  # Test App
+  - swift test
