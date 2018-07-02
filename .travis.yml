@@ -13,3 +13,7 @@ script:
   - swift build
   # Test App
   - swift test
+  # Test - remove later
+  - echo $SERVER_IP
+  # Deploy App
+  - ./deploy/deploy.sh
