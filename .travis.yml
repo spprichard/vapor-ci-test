@@ -2,18 +2,13 @@ language: swift
 cache: bundler
 os: osx
 osx_image: xcode9.4
-# before_script:
-#- gem install xcpretty
 script:
-  # Install Brew
-  - /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-  # Install Vapor
-  - brew install vapor/tap/vapor
-  # Build App
-  - swift build
-  # Test App
-  - swift test
-  # Test - remove later
-  - echo $SERVER_IP
-  # Deploy App
-  - ./deploy/deploy.sh
+- /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+- brew install vapor/tap/vapor
+- swift build
+- swift test
+- echo $SERVER_IP
+- "./deploy/deploy.sh"
+env:
+  global:
+    secure: I3trBJYduBc+qwLLmM2OmPMM383uxdGvEXyyqBD2VOm8EDbNbZaGvMbHsuxaHY/nmYvO6oVouTxiLu4lmHbHjre3VxRdToe1QGt/QCITVJ2iwj7GqGPCXnJN5ocHCu8a2YkrE5szSnbs52uukOtXCMvcpIYoiDys7vZaK6o2NliiC4OyoIDfDYuKc3HAfx92Jh0oW/dC7lmPB0Qez8O+63L7B1XqWWgzRwkWrPpzNzzC5lJJ8zt6uSvAxozFPUppVNo7qmdkP/muMP3wOHbvUq/rthEg+H5hIjFo+2qyMN3LLnKb/hkUA9nCGLswvoYm0j17JHTKuvShhKpC42KUYH6gYTf3aeWlPxvwkljcWVSvCzrLWdFncEv7KFIc6X4eZB4XhA4pxZlt/fiO1VCIThmhN1/Yq9Rr57/pXNGYXgt7nUwPNDEUq/uCQzWpzt2b1QgLNr6NKoJYgiIDCdV+DeMTbgeljCWG0W65ve1RBA7ZX4baLPIfR+4f7da4IoYhxh4JmYH82vvghMtnLjtpUmXde6mbgh/SPaAPH4/rA8Xt+bXANaY0NkSXUqpzonpu56Gvgt0Qi1+WaH+FQCX33GOhoQ2lXbYS7mTGEUu+FYh8qCDh7/ThSz0bnNOJO2N6HwaFJgb7UdbdcAU6W2Rav5xEU2WF56uN60GqovxvpLI=
