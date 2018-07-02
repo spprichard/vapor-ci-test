@@ -3,13 +3,13 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/swift:4.2.1
+      - image: swift:4.2.1
     steps:
       - checkout
       - run: swift build
   test:
     docker:
-      - image: circleci/swift:4.2.1
+      - image: swift:4.2.1
     steps:
       - checkout
       - run: swift test
