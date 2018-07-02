@@ -1,0 +1,22 @@
+machine:
+  xcode:
+    version: "8.3"
+
+dependencies:
+  pre:
+    - brew install postgres
+    - brew install vapor/tap/vapor
+    - swift package fetch
+  cache_directories:
+    - "./.build"
+
+compile:
+  override:
+    - vapor build
+
+test:
+  override:
+    - set -o pipefail &&
+      swift test 2>&1 |
+      tee $CIRCLE_ARTIFACTS/test.log |
+      xcpretty --color --report junit --output $CIRCLE_TEST_REPORTS/results.xml
