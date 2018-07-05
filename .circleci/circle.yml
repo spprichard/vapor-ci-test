@@ -1,7 +1,7 @@
 version: 2
 
 jobs:
-  linux:
+  build:
     docker:
       - image: swift:4.1
     steps:
@@ -14,4 +14,4 @@ jobs:
    version: 2
    build:
      jobs:
-       - linux
+       - build
