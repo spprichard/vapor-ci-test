@@ -13,7 +13,7 @@ jobs:
         name: Compile code
         command: swift build
 
- workflow:
+workflow:
    version: 2
    build:
      jobs:
