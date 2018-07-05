@@ -12,8 +12,8 @@ jobs:
           name: Install Dependencies
           command: |
             apt-get -qq update
-            apt-get -qq -y install make lsb-release curl git libicu55 libxml2 libcurl4-openssl-dev libc6-dev clang
+            apt-get -qq -y install lsb-release curl git libicu55 libxml2 libcurl4-openssl-dev libc6-dev clang
       - run:
           name: Run Tests
           command: |
-            make test
+            swift test
